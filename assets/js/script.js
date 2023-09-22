@@ -37,20 +37,34 @@ function runGame(gameType) {        //the game type trigger, calls this run game
     }
 }
 
+/**
+ * check answer against the first element in the returned calculatedCorrectAnswer array.
+ */
 function checkAnswer() {
+    let userAnswer = parseInt(document.getElementById("answer-box").value);     // the user answer is taken from the dom and input as "userAnswer"
+    let calculatedAnswer = calculateCorrectAnswer();                            // calculated answer of the same sum is called and assigned, calculatedAnswer
+    let isCorrect = userAnswer === calculatedAnswer[0];             //the two answers are compared and true or false is displayed.
 
+    if (isCorrect){     //if true is displayed
+        alert("Congrats, you are correct!")
+    } else {            //if false is displayed
+        alert(`Sorry, thats incorrect, you answered ${userAnswer}, the correct answer was ${calculatedAnswer[0]}! `);
+    }
+
+    runGame(calculatedAnswer[1]);  //takes the 2nd element from calculatedAnswer array, "addition" and runs a new game of this same type.
 
 }
 
 /**
  * Gets the operands and the operator symbol directly from the DOM and returns the correct answer.
+ * This returns as an array because of the [] in the if statement. 
  */
 function calculateCorrectAnswer() {
     let operand1 = parseInt(document.getElementById('operand1').innerText);     //collect a integer from id = operand1 within the html parseint returns a string as an integer 
     let operand2 = parseInt(document.getElementById('operand2').innerText);
     let operator = document.getElementById("operator").innerText;
 
-    if (operator === ("+") {
+    if (operator === "+") {
         return [operand1 + operand2, "addition"];
     } else {
         alert(`Unimplemented operator ${operator}`);
