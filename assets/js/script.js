@@ -5,9 +5,9 @@ document.addEventListener("DOMContentLoaded", function() {
     let buttons = document.getElementsByTagName("button");
 
     for (let button of buttons) {
-        button.addEventListener("click", function() {
-            if (this.getAttribute("data-type") === "submit") {
-                alert("You clicked Submit!")
+        button.addEventListener("click", function() {       //event listeners changed from alerting when button is clicked to calling the check answer function
+            if (this.getAttribute("data-type") === "submit") {          //only if the datatype of submit (i.e submit button) is clicked
+                checkAnswer();      //call check answer function block
             }
             else {
                 let gameType = this.getAttribute("data-type");    //gametype is generated through, if a button that is not submit is clicked.  //the data type returns depending on which button is clicked.
@@ -42,10 +42,22 @@ function checkAnswer() {
 
 }
 
+/**
+ * Gets the operands and the operator symbol directly from the DOM and returns the correct answer.
+ */
 function calculateCorrectAnswer() {
+    let operand1 = parseInt(document.getElementById('operand1').innerText);     //collect a integer from id = operand1 within the html parseint returns a string as an integer 
+    let operand2 = parseInt(document.getElementById('operand2').innerText);
+    let operator = document.getElementById("operator").innerText;
 
-
+    if (operator === ("+") {
+        return [operand1 + operand2, "addition"];
+    } else {
+        alert(`Unimplemented operator ${operator}`);
+        throw `Unimplemented operator ${operator}.Aborting!`;
+    }
 }
+
 
 function incrementScore() {
 
