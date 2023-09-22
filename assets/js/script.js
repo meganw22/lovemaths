@@ -10,22 +10,31 @@ document.addEventListener("DOMContentLoaded", function() {
                 alert("You clicked Submit!")
             }
             else {
-                let gameType = this.getAttribute("data-type");
-                alert(`You clicked ${gameType}`);
+                let gameType = this.getAttribute("data-type");    //gametype is generated through, if a button that is not submit is clicked.  //the data type returns depending on which button is clicked.
+                runGame("gameType") // the game type is generated as the data type and requested to run that data type in the game.
             }
 
         })
     }
+
+    runGame("addition");
 })
 /**
  * the main game "loop", called when the script is first loaded and the users answer
  * has been processed.
  */
-function runGame() {
+function runGame(gameType) {        //the game type trigger, calls this run game function, 
     // creates two random numbers between 1 and 25
     let num1 = Math.floor(Math.random() * 25) + 1
     let num2 = Math.floor(Math.random() * 25) + 1
 
+    //an if statement is run to decide which game needs playing
+    if (gameType === "addition") {
+        displayAdditionQuestion(num1, num2);    //if addition, call the function here and insert the two random numbers, jump down to the function
+    } else {
+        alert(`unknown game type: ${gameType}`);
+        throw `unknown game type: ${gameType}. Aborting!;`
+    }
 }
 
 function checkAnswer() {
@@ -48,8 +57,10 @@ function incrementWrongAnswer() {
 
 }
 
-function displayAdditionQuestion() {
-
+function displayAdditionQuestion(operand1, operand2) {
+    document.getElementById('operand1').textContent = operand1;        //finds the operand1 in the html
+    document.getElementById('operand2').textContent = operand2;
+    document.getElementById('operator').textContent = "+";             //inserts and overwrites the html + to the display
 
 }
 
