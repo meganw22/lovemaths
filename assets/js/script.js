@@ -17,6 +17,12 @@ document.addEventListener("DOMContentLoaded", function() {
         })
     }
 
+    document.getElementById("answer-box").addEventListener("keydown", function(event) {
+        if (event.key === "Enter") {
+            checkAnswer();        //  keydown is the event listener for a keyboard button press, when enter is pressed, run check answer
+        }
+    })
+
     runGame("addition");
 })
 /**
@@ -24,6 +30,10 @@ document.addEventListener("DOMContentLoaded", function() {
  * has been processed.
  */
 function runGame(gameType) {        //the game type trigger, calls this run game function, 
+
+    document.getElementById("answer-box").value = "";       //sets the answer box value to empty string to clear the answer box after each q.
+    document.getElementById("answer-box").focus();      // focusses the cursor to the answer box each time the page loads.
+
     // creates two random numbers between 1 and 25
     let num1 = Math.floor(Math.random() * 25) + 1
     let num2 = Math.floor(Math.random() * 25) + 1
