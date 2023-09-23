@@ -33,6 +33,8 @@ function runGame(gameType) {        //the game type trigger, calls this run game
         displayAdditionQuestion(num1, num2);    //if addition, call the function here and insert the two random numbers, jump down to the function
     } else if (gameType === "multiply") {
         displayMultiplyQuestion(num1, num2);
+    } else if (gameType === "subtract") {
+        displaySubtractQuestion(num1, num2);
     } else {
         alert(`unknown game type: ${gameType}`);
         throw `unknown game type: ${gameType}. Aborting!`;
@@ -72,6 +74,8 @@ function calculateCorrectAnswer() {
         return [operand1 + operand2, "addition"];
     } else if (operator === "x") {
         return [operand1 * operand2, "multiply"];
+    } else if (operator === "-") {
+        return [operand1 - operand2, "subtract"];
     } else {
         alert(`Unimplemented operator ${operator}`);
         throw `Unimplemented operator ${operator}.Aborting!`;
@@ -100,9 +104,10 @@ function displayAdditionQuestion(operand1, operand2) {
 
 }
 
-function displaySubtractQuestion() {
-
-
+function displaySubtractQuestion(operand1, operand2) {
+    document.getElementById('operand1').textContent = operand1 > operand2 ? operand1:operand2; //if operand1 is bigger than operand 2, insert this (the larger value) into the operand1 value.
+    document.getElementById('operand2').textContent = operand1 > operand2 ? operand2:operand1   // if o1 is bigger than o2, dont insert larger value to o2
+    document.getElementById('operator').textContent = "-";
 }
 
 function displayMultiplyQuestion(operand1, operand2) {
