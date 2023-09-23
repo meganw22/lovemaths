@@ -47,8 +47,10 @@ function checkAnswer() {
 
     if (isCorrect){     //if true is displayed
         alert("Congrats, you are correct!")
+        incrementScore();
     } else {            //if false is displayed
         alert(`Sorry, thats incorrect, you answered ${userAnswer}, the correct answer was ${calculatedAnswer[0]}! `);
+        incrementWrongAnswer();
     }
 
     runGame(calculatedAnswer[1]);  //takes the 2nd element from calculatedAnswer array, "addition" and runs a new game of this same type.
@@ -72,15 +74,19 @@ function calculateCorrectAnswer() {
     }
 }
 
-
+/**
+ * get current score from the dom and increment it by one
+ */
 function incrementScore() {
-
-
+    let oldScore = parseInt(document.getElementById("score").innerText);        //assign the inner text of the current score to here
+    document.getElementById("score").innerText = ++oldScore                     //call the score integer and ++ to increment the score, +1 could also be used here.
 }
-
+/**
+ * get current incorrect score from the dom and increment it by one
+ */
 function incrementWrongAnswer() {
-
-
+    let oldScore  = parseInt(document.getElementById("incorrect").innerText);
+    document.getElementById("incorrect").innerText = ++oldScore
 }
 
 function displayAdditionQuestion(operand1, operand2) {
